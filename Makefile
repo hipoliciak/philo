@@ -6,7 +6,7 @@
 #    By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/17 19:28:23 by dmodrzej          #+#    #+#              #
-#    Updated: 2024/06/17 19:40:28 by dmodrzej         ###   ########.fr        #
+#    Updated: 2024/06/17 19:55:22 by dmodrzej         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,19 +17,14 @@ CC		=	cc
 FLAGS	=	-Wall -Wextra -Werror
 
 # sources
-SRC_DIR =	srcs/
 SRC		=	main.c philo.c utils.c \
 			# init.c threads.c \
 			# actions.c monitor.c print.c
-SRCS	=	$(addprefix $(SRC_DIR), $(SRC))
 
 # objects
 OBJ_DIR	=	objs/
 OBJ		=	$(SRC:.c=.o)
 OBJS	=	$(addprefix $(OBJ_DIR), $(OBJ))
-
-# includes
-INC		=	-I includes/
 
 # colors & symbols
 GREEN 	= 	\033[0;32m
@@ -46,14 +41,14 @@ define PRINT_LOADING
 	@printf "] 100%%$(RESET)\n"
 endef
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_DIR)
+$(OBJ_DIR)%.o: %.c | $(OBJ_DIR)
 			@$(CC) $(FLAGS) -c $< -o $@ $(INC)
 
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
 			@echo "$(CYAN)Compiling program...$(NC)"
-			@$(CC) $(FLAGS) $(OBJS) -o $(NAME) $(INC)
+			@$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 			@$(PRINT_LOADING)
 			@echo "$(GREEN)Program compilation successful		$(TICK)$(NC)"
 
