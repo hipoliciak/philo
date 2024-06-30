@@ -1,29 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   args.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/17 19:28:15 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/06/30 21:39:17 by dmodrzej         ###   ########.fr       */
+/*   Created: 2024/06/25 21:52:25 by dmodrzej          #+#    #+#             */
+/*   Updated: 2024/06/25 22:03:20 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
+int	check_number_of_args(int argc)
 {
-	t_table	*table;
+	if (argc < 5 || argc > 6)
+	{
+		printf("Error: wrong number of arguments\n");
+		return (1);
+	}
+	return (0);
+}
 
-	table = NULL;
-	if (check_number_of_args(argc))
-		return (1);
-	if (check_args_values(argv))
-		return (1);
-	table = init_table(argv);
-	if (!table)
-		return (1);
-	free_data(table);
+int	check_args_values(char **argv)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (argv[i])
+	{
+		j = 0;
+		while (argv[i][j])
+		{
+			if (!ft_isdigit(argv[i][j]))
+			{
+				printf("Error: arguments must be positive integers\n");
+				return (1);
+			}
+			j++;
+		}
+		i++;
+	}
 	return (0);
 }

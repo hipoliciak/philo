@@ -6,7 +6,7 @@
 #    By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/17 19:28:23 by dmodrzej          #+#    #+#              #
-#    Updated: 2024/06/17 19:55:22 by dmodrzej         ###   ########.fr        #
+#    Updated: 2024/06/30 21:27:24 by dmodrzej         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CC		=	cc
 FLAGS	=	-Wall -Wextra -Werror
 
 # sources
-SRC		=	main.c philo.c utils.c \
+SRC		=	main.c utils.c args.c init.c \
 			# init.c threads.c \
 			# actions.c monitor.c print.c
 
@@ -42,7 +42,7 @@ define PRINT_LOADING
 endef
 
 $(OBJ_DIR)%.o: %.c | $(OBJ_DIR)
-			@$(CC) $(FLAGS) -c $< -o $@ $(INC)
+			@$(CC) $(FLAGS) -c $< -o $@
 
 all:		$(NAME)
 

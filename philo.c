@@ -6,11 +6,23 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 19:37:28 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/06/17 19:38:02 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/06/26 20:20:24 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int	philo_is_dead(t_philo *philo)
+{
+	if (get_time() - philo->last_meal > 800)
+	{
+		pthread_mutex_lock(philo->print_mutex);
+		printf("Philo %d is dead\n", philo->id);
+		pthread_mutex_unlock(philo->print_mutex);
+		return (1);
+	}
+	return (0);
+}
 
 void	*philo_routine(void *arg)
 {

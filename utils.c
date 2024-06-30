@@ -6,7 +6,7 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 19:39:21 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/06/17 19:41:39 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/06/26 21:47:21 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,17 @@ int	ft_atoi(const char *str)
 	return (result * sign);
 }
 
-int	get_time(void)
+time_t	get_time(void)
 {
 	struct timeval	time;
 
 	gettimeofday(&time, NULL);
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+}
+
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
 }
