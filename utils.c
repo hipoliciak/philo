@@ -6,7 +6,7 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 19:39:21 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/06/26 21:47:21 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/07/01 22:55:10 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@ int	ft_atoi(const char *str)
 	return (result * sign);
 }
 
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}
+
 time_t	get_time(void)
 {
 	struct timeval	time;
@@ -44,9 +51,30 @@ time_t	get_time(void)
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
-int	ft_isdigit(int c)
+void	free_data(t_table *table)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
+	int	i;
+
+	i = 0;
+	while (table->philos[i])
+	{
+		pthread_join(table->philos[i]->thread, NULL);
+		i++;
+	}
+	pthread_mutex_destroy(&table->write_mutex);
+	i = 0;
+	while (i < table->philo_count)
+	{
+		pthread_mutex_destroy(&table->forks[i]);
+		i++;
+	}
+	free(table->forks);
+	i = 0;
+	while (table->philos[i])
+	{
+		free(table->philos[i]);
+		i++;
+	}
+	free(table->philos);
+	free(table);
 }

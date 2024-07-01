@@ -6,7 +6,7 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 19:28:15 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/06/30 21:39:17 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/07/01 21:25:43 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	main(int argc, char **argv)
 	table = init_table(argv);
 	if (!table)
 		return (1);
+	start_meetup(table);
 	free_data(table);
 	return (0);
 }
