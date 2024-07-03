@@ -6,7 +6,7 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 22:07:22 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/07/01 22:52:56 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/07/04 01:44:01 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,14 @@ t_table	*init_table(char **argv)
 	table->meal_count = -1;
 	if (argv[5])
 		table->meal_count = ft_atoi(argv[5]);
-	table->dead = 0;
+	if (table->philo_count < 1 || table->time_to_die < 1
+		|| table->time_to_eat < 1 || table->time_to_sleep < 1
+		|| (argv[5] && table->meal_count < 1))
+	{
+		free(table);
+		return (NULL);
+	}
+	table->end_meetup = 0;
 	table->philos = init_philos(table);
 	if (!table->philos)
 		return (NULL);
@@ -52,8 +59,11 @@ t_philo	**init_philos(t_table *table)
 			return (NULL);
 		philos[i]->id = i + 1;
 		philos[i]->eat_count = 0;
+		philos[i]->last_meal = 0;
 		philos[i]->table = table;
 		assign_forks(philos[i]);
+		if (pthread_mutex_init(&philos[i]->meal_mutex, NULL) != 0)
+			return (NULL);
 		i++;
 	}
 	return (philos);
@@ -79,14 +89,13 @@ pthread_mutex_t	*init_forks(t_table *table)
 
 void	assign_forks(t_philo *philo)
 {
-	if (philo->table->philo_count == 1)
-	{
-		philo->fork[0] = 0;
-		philo->fork[1] = 0;
-		return ;
-	}
 	philo->fork[0] = philo->id - 1;
 	philo->fork[1] = philo->id % philo->table->philo_count;
+	if (philo->id % 2)
+	{
+		philo->fork[0] = philo->id % philo->table->philo_count;
+		philo->fork[1] = philo->id - 1;
+	}
 }
 
 int	init_mutexes(t_table *table)
@@ -95,6 +104,8 @@ int	init_mutexes(t_table *table)
 	if (!table->forks)
 		return (1);
 	if (pthread_mutex_init(&table->write_mutex, NULL) != 0)
+		return (1);
+	if (pthread_mutex_init(&table->end_mutex, NULL) != 0)
 		return (1);
 	return (0);
 }
