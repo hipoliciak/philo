@@ -6,7 +6,7 @@
 #    By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/17 19:28:23 by dmodrzej          #+#    #+#              #
-#    Updated: 2024/07/02 21:38:05 by dmodrzej         ###   ########.fr        #
+#    Updated: 2024/07/04 20:49:18 by dmodrzej         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,7 @@ CC		=	cc
 FLAGS	=	-Wall -Wextra -Werror
 
 # sources
-SRC		=	main.c args.c init.c meetup.c utils.c \
-			# init.c threads.c \
-			# actions.c monitor.c print.c
+SRC		=	main.c init.c meetup.c philo.c end.c utils.c
 
 # objects
 OBJ_DIR	=	objs/

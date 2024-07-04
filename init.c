@@ -6,7 +6,7 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 22:07:22 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/07/04 01:44:01 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/07/04 20:24:23 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ t_table	*init_table(char **argv)
 	table->meal_count = -1;
 	if (argv[5])
 		table->meal_count = ft_atoi(argv[5]);
-	if (table->philo_count < 1 || table->time_to_die < 1
-		|| table->time_to_eat < 1 || table->time_to_sleep < 1
-		|| (argv[5] && table->meal_count < 1))
+	if (argv[5] && table->meal_count < 1)
 	{
 		free(table);
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 19:29:29 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/07/04 00:18:05 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/07/04 20:48:54 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,6 @@ typedef struct s_philo
 	t_table			*table;
 }	t_philo;
 
-// args.c
-int				check_number_of_args(int argc);
-int				check_args_values(char **argv);
-
 // init.c
 t_table			*init_table(char **argv);
 t_philo			**init_philos(t_table *table);
@@ -61,19 +57,25 @@ int				init_mutexes(t_table *table);
 
 // meetup.c
 void			start_meetup(t_table *table);
-void			*philo_routine(void *arg);
-void			philo_sleep(t_table *table, time_t time);
-int				philo_is_dead(t_philo *philo);
-int				has_meetup_ended(t_table *table);
-int				end_condition_reached(t_table *table);
-void			*check_end(void *arg);
-void			think_routine(t_philo *philo);
-
-// utils.c
-int				ft_atoi(const char *str);
-int				ft_isdigit(int c);
 time_t			get_time(void);
 void			write_status(t_philo *philo, char *str);
+
+// philo.c
+void			*philo_routine(void *arg);
+void			philo_sleep(t_table *table, time_t time);
+void			think_routine(t_philo *philo);
+
+// end.c
+void			*check_end(void *arg);
+int				end_condition_reached(t_table *table);
+int				philo_is_dead(t_philo *philo);
+int				has_meetup_ended(t_table *table);
 void			free_data(t_table *table);
+
+// utils.c
+int				check_number_of_args(int argc);
+int				check_args_values(char **argv);
+int				ft_atoi(const char *str);
+int				ft_isdigit(int c);
 
 #endif
