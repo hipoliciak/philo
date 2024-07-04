@@ -6,7 +6,7 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 20:26:14 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/07/04 20:48:11 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/07/04 20:56:09 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,27 +51,6 @@ int	end_condition_reached(t_table *table)
 		pthread_mutex_unlock(&table->end_mutex);
 		return (1);
 	}
-	return (0);
-}
-
-int	philo_is_dead(t_philo *philo)
-{
-	time_t	time;
-
-	time = get_time();
-	if ((time - philo->last_meal) >= philo->table->time_to_die)
-	{
-		pthread_mutex_lock(&philo->table->end_mutex);
-		philo->table->end_meetup = 1;
-		pthread_mutex_unlock(&philo->table->end_mutex);
-		pthread_mutex_lock(&philo->table->write_mutex);
-		printf("%ld %d is dead\n", get_time() - philo->table->start_time,
-			philo->id);
-		pthread_mutex_unlock(&philo->table->write_mutex);
-		pthread_mutex_unlock(&philo->meal_mutex);
-		return (1);
-	}
-	pthread_mutex_unlock(&philo->meal_mutex);
 	return (0);
 }
 

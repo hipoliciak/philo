@@ -6,7 +6,7 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 19:29:29 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/07/04 20:48:54 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/07/04 20:56:58 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,14 @@ void			write_status(t_philo *philo, char *str);
 
 // philo.c
 void			*philo_routine(void *arg);
-void			philo_sleep(t_table *table, time_t time);
+void			eat_routine(t_philo *philo);
 void			think_routine(t_philo *philo);
+void			philo_add_time(t_table *table, time_t time);
+int				philo_is_dead(t_philo *philo);
 
 // end.c
 void			*check_end(void *arg);
 int				end_condition_reached(t_table *table);
-int				philo_is_dead(t_philo *philo);
 int				has_meetup_ended(t_table *table);
 void			free_data(t_table *table);
 
