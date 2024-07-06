@@ -6,7 +6,7 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 20:42:21 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/07/04 20:58:37 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/07/06 13:14:34 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,12 @@ void	think_routine(t_philo *philo)
 	pthread_mutex_unlock(&philo->meal_mutex);
 	if (time_to_think < 0)
 		time_to_think = 0;
+	if (time_to_think == 0)
+		time_to_think = 1;
 	if (time_to_think > 600)
 		time_to_think = 200;
-	write_status(philo, "is thinking");
 	philo_add_time(philo->table, time_to_think);
+	write_status(philo, "is thinking");
 }
 
 void	philo_add_time(t_table *table, time_t time_to_add)
