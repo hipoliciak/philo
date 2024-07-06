@@ -6,7 +6,7 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 22:07:22 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/07/04 20:24:23 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/07/06 13:39:04 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_philo	**init_philos(t_table *table)
 			return (NULL);
 		philos[i]->id = i + 1;
 		philos[i]->eat_count = 0;
-		philos[i]->last_meal = 0;
+		philos[i]->last_meal = get_time();
 		philos[i]->table = table;
 		assign_forks(philos[i]);
 		if (pthread_mutex_init(&philos[i]->meal_mutex, NULL) != 0)
