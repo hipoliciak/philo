@@ -6,7 +6,7 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 19:29:29 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/07/04 20:56:58 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/07/08 21:28:19 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,6 @@ int				check_number_of_args(int argc);
 int				check_args_values(char **argv);
 int				ft_atoi(const char *str);
 int				ft_isdigit(int c);
+void			change_end_meetup_status(t_table *table);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 19:39:21 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/07/04 20:41:48 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/07/08 21:28:08 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,11 @@ int	ft_isdigit(int c)
 	if (c >= '0' && c <= '9')
 		return (1);
 	return (0);
+}
+
+void	change_end_meetup_status(t_table *table)
+{
+	pthread_mutex_lock(&table->end_mutex);
+	table->end_meetup = 1;
+	pthread_mutex_unlock(&table->end_mutex);
 }

@@ -6,7 +6,7 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 20:26:14 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/07/08 21:07:53 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/07/08 21:47:30 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,7 @@ int	end_condition_reached(t_table *table)
 	}
 	if (table->meal_count != -1 && meal_count_reached == 1)
 	{
-		pthread_mutex_lock(&table->end_mutex);
-		table->end_meetup = 1;
-		pthread_mutex_unlock(&table->end_mutex);
+		change_end_meetup_status(table);
 		return (1);
 	}
 	return (0);
