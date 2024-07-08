@@ -6,7 +6,7 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 20:26:14 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/07/04 20:56:09 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/07/08 21:07:53 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*check_end(void *arg)
 	{
 		if (end_condition_reached(table))
 			return (NULL);
-		usleep(100);
+		usleep(1000);
 	}
 	return (NULL);
 }
@@ -33,11 +33,14 @@ int	end_condition_reached(t_table *table)
 
 	meal_count_reached = 1;
 	i = 0;
-	while (table->philos[i])
+	while (i < table->philo_count)
 	{
 		pthread_mutex_lock(&table->philos[i]->meal_mutex);
 		if (philo_is_dead(table->philos[i]))
+		{
+			pthread_mutex_unlock(&table->philos[i]->meal_mutex);
 			return (1);
+		}
 		if (table->meal_count != -1)
 			if (table->philos[i]->eat_count < table->meal_count)
 				meal_count_reached = 0;

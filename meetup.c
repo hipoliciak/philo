@@ -6,7 +6,7 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 21:08:37 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/07/04 20:42:50 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/07/08 21:10:23 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void	start_meetup(t_table *table)
 		pthread_join(table->philos[i]->thread, NULL);
 		i++;
 	}
-	pthread_join(table->end_thread, NULL);
+	if (table->philo_count > 1)
+		pthread_join(table->end_thread, NULL);
 }
 
 time_t	get_time(void)

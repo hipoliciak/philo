@@ -6,7 +6,7 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 20:42:21 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/07/04 20:58:37 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/07/08 21:08:07 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,7 @@ int	philo_is_dead(t_philo *philo)
 		printf("%ld %d is dead\n", get_time() - philo->table->start_time,
 			philo->id);
 		pthread_mutex_unlock(&philo->table->write_mutex);
-		pthread_mutex_unlock(&philo->meal_mutex);
 		return (1);
 	}
-	pthread_mutex_unlock(&philo->meal_mutex);
 	return (0);
 }
