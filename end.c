@@ -6,7 +6,7 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 20:26:14 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/07/08 21:47:30 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/07/10 20:21:09 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,8 @@ int	has_meetup_ended(t_table *table)
 {
 	int	end;
 
-	end = 0;
 	pthread_mutex_lock(&table->end_mutex);
-	if (table->end_meetup == 1)
-		end = 1;
+	end = table->end_meetup;
 	pthread_mutex_unlock(&table->end_mutex);
 	return (end);
 }
